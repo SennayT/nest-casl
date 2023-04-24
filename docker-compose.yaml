@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   server:
-    image: nest-casl-backend
+    image: sennayw/nest-casl
     build:
       context: .
       target: local
