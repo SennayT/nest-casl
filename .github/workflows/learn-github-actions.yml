@@ -16,4 +16,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: DOT ENV
-        run: cp $HOME/IdeaProjects/.${{needs.environment.outputs.name}}.env .env
+        run: echo $HOME/IdeaProjects/.${{needs.environment.outputs.name}}.env > file
