@@ -1,12 +1,19 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  check-bats-version:
+  environment:
+    name: output env
     runs-on: ubuntu-latest
+    outputs:
+      name: ${{steps.env.outputs.name}}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Output environment
+        id: env
+        run: echo "name=sennay" >> $GITHUB_OUTPUT
+  deploy:
+    name: deploy
+    needs: [environment]
+    runs-on: self-hosted
+    steps:
+      - name: DOT ENV
+        run: cp $HOME/IdeaProjects/.${{needs.environment.outputs.name}}.env .env
