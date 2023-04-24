@@ -44,5 +44,8 @@ jobs:
       - name: pull image
         run: docker pull sennayw/nest-casl
 
+      - name: get pwd
+        run: echo $PWD > ./directory
+
       - name: deployment
-        run: docker compose up
+        run: docker compose up -d --force-recreate
