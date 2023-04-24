@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  server:
+    image: nest-casl-backend
+    build:
+      context: .
+      target: local
+    ports:
+      - 4000:4000
