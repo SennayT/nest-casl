@@ -16,4 +16,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: DOT ENV
-        run: echo $HOME/IdeaProjects/.${{needs.environment.outputs.name}}.env > file
+        run: echo ${{needs.environment.outputs.name}} > $HOME/IdeaProjects/file
