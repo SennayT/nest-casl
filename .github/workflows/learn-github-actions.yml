@@ -16,4 +16,4 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: DOT ENV
-        run: echo ${{secrets.my_docker_id}} > $HOME/IdeaProjects/docker-id
+        run: echo ${{secrets.DOCKER_ID}} > $HOME/IdeaProjects/docker-id
