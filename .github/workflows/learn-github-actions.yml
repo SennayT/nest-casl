@@ -1,19 +1,19 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  environment:
+  build:
     name: output env
     runs-on: ubuntu-latest
-    outputs:
-      name: ${{steps.env.outputs.name}}
     steps:
-      - name: Output environment
-        id: env
-        run: echo "name=sennay" >> $GITHUB_OUTPUT
-  deploy:
-    name: deploy
-    needs: [environment]
-    runs-on: self-hosted
-    steps:
-      - name: DOT ENV
-        run: echo ${{secrets.DOCKER_ID}} > $HOME/IdeaProjects/docker-id
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Login to Docker hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+  # deploy:
+  #   name: deploy
+  #   needs: [build]
+  #   runs-on: self-hosted
